@@ -29,7 +29,7 @@ The person who asked can **Cancel request** at any time. **New request** starts 
 ## Where to follow approvals
 
 - **On the page:** the dialog shows the **History**: who decided which version, when, and why.
-- **In a space:** the space sidebar has **Approvals**, listing every page with a request, its state, the reviewed version, the last approved version and the current version. A line at the top counts pages by state, starting with what needs action (needs re-approval, rejected, pending). Click a count to list only those pages; click it again, or **Show all**, to see every page.
+- **In a space:** the space sidebar has **Approvals**, listing every page with a request, its state, the reviewed version, the last approved version and the current version. A line at the top counts pages by state, starting with what needs action (needs re-approval, rejected, pending). Click a count to list only those pages; click it again, or **Show all**, to see every page. **Export history (CSV)** shows every decision in the space, one line per approver per round (page, version, approver, decision, comment, who asked, when asked and decided, in UTC), ready to paste into a spreadsheet for an audit. Pages you cannot see are left out.
 - **For you:** **Apps > My approvals** lists what waits for your decision, oldest request first, with how many days each one has been waiting.
 
 Pages you cannot see in Confluence stay hidden in these lists, because titles and versions are read with your own permissions.
