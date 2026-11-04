@@ -11,6 +11,8 @@ Reapprove is a Confluence Cloud app by Design Master Solutions. Page approvals a
 
 The approvers get a page comment with an @mention, so they see it in the Confluence bell and by e-mail, with the page title.
 
+If an approver has not answered after 3 days, Reapprove adds another comment that @mentions only the approvers still missing, and repeats it every 7 days while the request stays open. Each step is sent once, and it stops as soon as everyone has answered or the request is cancelled.
+
 ## Approve or reject
 
 Open the page and click the state under the title. Click **Approve version N**, or write **Your comment** and click **Reject**. A comment is required to reject, and it goes to the page history and to the reply comment.
