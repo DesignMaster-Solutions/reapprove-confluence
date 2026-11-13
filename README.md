@@ -2,6 +2,8 @@
 
 Reapprove is a Confluence Cloud app by Design Master Solutions. Page approvals are tied to the page version: when someone edits an approved page, the approval stops counting and the same approvers are asked to review the new version. This repository holds the public documentation and is the place to report problems.
 
+Install: https://marketplace.atlassian.com/apps/3231212993/reapprove-for-confluence · 2-minute demo: https://youtu.be/lB8UTtduQe8
+
 ## Ask for approval
 
 1. Open a Confluence page. Under the title, click **Request approval** (it shows the current state, for example *Not requested*).
