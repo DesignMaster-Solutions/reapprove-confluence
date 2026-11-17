@@ -7,7 +7,7 @@ Install: https://marketplace.atlassian.com/apps/3231212993/reapprove-for-conflue
 ## Ask for approval
 
 1. Open a Confluence page. Under the title, click **Request approval** (it shows the current state, for example *Not requested*).
-2. In **Approvers**, choose one or more people.
+2. In **Approvers**, choose 1 to 20 people other than yourself. You cannot approve your own request.
 3. Under **Rule**, choose **Everyone must approve** or **Any one approver is enough**.
 4. Add an optional **Note for the approvers** and click **Request approval of version N**.
 
@@ -26,7 +26,7 @@ Open the page and click the state under the title. Click **Approve version N**, 
 - Adding or removing a label does not create a page version, so it does not reset the approval.
 - A request nobody answered yet just follows the latest version, without new comments, so a burst of edits does not spam anyone.
 
-The person who asked can **Cancel request** at any time. **New request** starts a round with other approvers or another rule.
+The person who asked can **Cancel request** while the request is pending. **New request** starts a round with other approvers or another rule, closing any pending decisions in the previous round while preserving History.
 
 ## Where to follow approvals
 
@@ -44,7 +44,21 @@ The app is Runs on Atlassian: it has no servers of its own and sends no data out
 
 Sold through the Atlassian Marketplace, per Confluence user, free for up to 10 users. Requesting and deciding need an active subscription; see the Marketplace listing for the current price.
 
+## If you cannot continue
+
+| What you see | What to do |
+|---|---|
+| The subscription is not active | Ask a Confluence admin to renew or activate Reapprove before requesting or deciding. |
+| You cannot approve your own request | Remove yourself from Approvers and choose another person. |
+| No Approve or Reject button | Check that you are signed in as a selected approver and that your decision is still pending. A completed round requires a new request. |
+| This page changed after the request | Reload the page, read the latest version and reopen its approval status. |
+| Nothing is waiting for your approval | My approvals has no pending request visible to your account. Check the page's History if you expected a completed request. |
+| Export history (CSV) did not download a file | The button displays CSV text. Copy the text into a spreadsheet or save it as a `.csv` file. |
+
+Notes and decision comments can have up to 500 characters each. A rejection requires a reason and ends the round under either approval rule. Reapprove works on Confluence pages, not blog posts.
+
 ## Support
+
 
 - Ticket: https://portal.designmastersolutions.com/submitticket.php
 - E-mail: info@designmastersolutions.com
