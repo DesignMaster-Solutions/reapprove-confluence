@@ -36,6 +36,27 @@ The person who asked can **Cancel request** while the request is pending. **New 
 
 Pages you cannot see in Confluence stay hidden in these lists, because titles and versions are read with your own permissions.
 
+## Export and read the approval history
+
+1. Open **Approvals** from the space sidebar and click **Export history (CSV)**.
+2. Copy the displayed text, including the header, into a plain-text file with a `.csv` extension. The button displays text; it does not download a file.
+3. Import the file into your spreadsheet as comma-separated data. If everything appears in one column, select comma as the separator during import.
+4. Compare **Version** with the current page version before treating a past approval as evidence for the current content.
+
+The export includes history across the space, even when you have selected a status count to filter the on-screen table. It contains one row per approver per round, not one row per page. It only includes pages your current Confluence account can read. The current export reads up to 5,000 stored rows; do not treat it as a complete archive for a space above that limit.
+
+| Decision | How to read it |
+|---|---|
+| Approved | This person approved the version shown in this row. It does not by itself prove that the current page is approved. |
+| Rejected | This person rejected that version; Comment contains the reason. |
+| Pending | This person has not answered this round. |
+| Not needed | This pending decision was closed without an answer, for example because another approver completed an any-one round or someone rejected the round. It is not an approval. |
+| Cancelled | This request was cancelled. It is not an approval or rejection. |
+
+Dates in the CSV are UTC, while dates in the app use the displayed local format. A blank **Decided at (UTC)** means no decision timestamp is stored for that row. If Confluence does not return a display name, the export keeps the account ID; erased accounts appear as **Closed account**. Text starting with formula-like characters may have a leading apostrophe so spreadsheets treat it as text.
+
+The CSV contains names and decision comments. Share the exported file only with people who should have access to that history; Confluence permissions do not control a copy after you export it.
+
 ## Data and privacy
 
 The app is Runs on Atlassian: it has no servers of its own and sends no data outside Atlassian. It stores, in Atlassian Forge storage of your site, one record per approver per round: page ID, page version, state, dates, the note or reason typed and the Atlassian account IDs of the requester and the approver. Page titles and content are read live and never stored. Once a week it reports the stored account IDs to Atlassian through the Personal data reporting API; when an account is closed, its account ID and the text it typed are removed and the decision stays. Privacy policy: https://www.designmastersolutions.com/privacy.html#atlassian-apps
