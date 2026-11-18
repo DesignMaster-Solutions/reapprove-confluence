@@ -28,7 +28,32 @@ Open the page and click the state under the title. Click **Approve version N**, 
 
 The person who asked can **Cancel request** while the request is pending. **New request** starts a round with other approvers or another rule, closing any pending decisions in the previous round while preserving History.
 
+## Worked example: a procedure changes halfway through review
+
+Use this example to check whether approval still covers the content your team will use. It is an illustrative scenario validated against the app's rules, not a customer approval record.
+
+[Install Reapprove from the Marketplace](https://marketplace.atlassian.com/apps/3231212993/reapprove-for-confluence), then use a test Confluence page that the author and both reviewers can access. An admin handles installation and the subscription; check the Marketplace for current terms. You need an author and two different reviewers because the author cannot approve their own request.
+
+**Input:** the author publishes “Supplier onboarding procedure”, version 7, and requests approval from Reviewer A and Reviewer B with **Everyone must approve**. The note is “Check the supplier verification steps.” Use your page's actual version number in place of 7.
+
+| Action | Result to check under the page title |
+|---|---|
+| Submit the request for version 7 | Approval pending 0/2 |
+| Reviewer A opens the status dialog and clicks Approve version 7 | Approval pending 1/2; one approval is not enough |
+| The author changes a verification step and publishes version 8 | Needs re-approval until the update is processed; then Needs re-approval 0/2 |
+| Both reviewers read version 8; Reviewer A approves it | Needs re-approval 1/2 |
+| Reviewer B also approves version 8 | Approved (v8) |
+
+Reload the page and reopen its status dialog after the edit. The new round uses the same two reviewers and the same everyone rule. Both must review again, including Reviewer A: the previous approval covered version 7. The old note does not carry into this round. The app adds a comment mentioning both reviewers; notification delivery follows Confluence settings.
+
+**Check the record:** History retains Reviewer A's version 7 approval. Reviewer B's unanswered version 7 row is closed and appears as **Not needed** in the CSV, not Approved. Version 8 has two new decisions. Before both approve version 8, version 7 is not a previously approved version of the whole page: its everyone round never finished. After both approve version 8, the space's last approved version is 8.
+
+For comparison, if the author edits before either reviewer answers, the pending round follows the new version silently, without a new mention comment. If a reviewer rejects, a reason is required and the round ends under either rule. Reapprove records review decisions; an approval is not a lock preventing future edits.
+
+To try this with your team, [open the installation listing](https://marketplace.atlassian.com/apps/3231212993/reapprove-for-confluence), then follow **Ask for approval** above. Use test content and consenting reviewers: requests create real Confluence comments and mentions.
+
 ## Where to follow approvals
+
 
 - **On the page:** the dialog shows the **History**: who decided which version, when, and why.
 - **In a space:** the space sidebar has **Approvals**, listing every page with a request, its state, the reviewed version, the last approved version and the current version. A line at the top counts pages by state, starting with what needs action (needs re-approval, rejected, pending). Click a count to list only those pages; click it again, or **Show all**, to see every page. **Export history (CSV)** shows every decision in the space, one line per approver per round (page, version, approver, decision, comment, who asked, when asked and decided, in UTC), ready to paste into a spreadsheet for an audit. Pages you cannot see are left out.
