@@ -11,9 +11,9 @@ Install: https://marketplace.atlassian.com/apps/3231212993/reapprove-for-conflue
 3. Under **Rule**, choose **Everyone must approve** or **Any one approver is enough**.
 4. Add an optional **Note for the approvers** and click **Request approval of version N**.
 
-The approvers get a page comment with an @mention, so they see it in the Confluence bell and by e-mail, with the page title.
+The app adds a page comment with an @mention for the approvers. Bell and e-mail notification delivery depends on Confluence settings.
 
-If an approver has not answered after 3 days, Reapprove adds another comment that @mentions only the approvers still missing, and repeats it every 7 days while the request stays open. Each step is sent once, and it stops as soon as everyone has answered or the request is cancelled.
+If an approver has not answered after 3 days, Reapprove adds another comment that @mentions only the approvers still missing, and repeats it every 7 days while the request stays open. Each step is sent once. Reminders stop when the round completes (including one approval under the any-one rule or a rejection under either rule), or when the request is cancelled.
 
 ## Approve or reject
 
@@ -51,6 +51,31 @@ Reload the page and reopen its status dialog after the edit. The new round uses 
 For comparison, if the author edits before either reviewer answers, the pending round follows the new version silently, without a new mention comment. If a reviewer rejects, a reason is required and the round ends under either rule. Reapprove records review decisions; an approval is not a lock preventing future edits.
 
 To try this with your team, [open the installation listing](https://marketplace.atlassian.com/apps/3231212993/reapprove-for-confluence), then follow **Ask for approval** above. Use test content and consenting reviewers: requests create real Confluence comments and mentions.
+
+## Worked example: choose one reviewer or require both
+
+Use **Any one approver is enough** when either selected person can sign off independently. Use **Everyone must approve** when both reviews are required. Neither rule is a majority vote. This illustrative example is validated against the app implementation; it is not a record of a live team review.
+
+[Install Reapprove](https://marketplace.atlassian.com/apps/3231212993/reapprove-for-confluence), then open a test page accessible to its author and two consenting reviewers. An admin handles installation and the subscription under the current Marketplace terms. The author cannot be one of their own approvers.
+
+**Input:** publish “Support handover”, version 3 (use your actual page version), open **Request approval**, choose Reviewer A and Reviewer B, select **Any one approver is enough**, add “Check the escalation contact”, and submit **Request approval of version 3**.
+
+Run the following as separate rounds, not as actions in one completed round:
+
+| Rule and action | Result |
+|---|---|
+| Any one: A approves while B has not answered | Approved (v3). B's unanswered row closes; the CSV calls it Not needed. |
+| Any one: B rejects first with “Escalation contact is missing” | Rejected. A's unanswered row closes. A cannot rescue this round with a later approval. |
+| Everyone: A approves while B has not answered | Approval pending 1/2. B still needs to review. |
+| Everyone: B rejects after A approves | Rejected. History keeps A's approval and B's reason; the page is not approved. |
+
+After each decision, reload and reopen the page status. In a completed round, the other reviewer no longer has an **Approve** or **Reject** action. A rejection needs a reason. “Any one” does not mean a later approval overrides a rejection, and an unanswered closed row does not mean that reviewer agreed. These examples assume reviewers act one at a time; they do not establish the outcome of simultaneous submissions.
+
+**Recover after rejection:** read the reason in **History**, fix the missing escalation contact and publish the next page version. Reapprove asks the same reviewers again under the same rule; the previous note is not copied. To require both reviewers instead, open **New request**, select both people, choose **Everyone must approve**, add the new note and submit. Previous decisions stay in History, but they do not count as answers to the new round. Check the version and rule in the dialog before reviewing.
+
+Once a round completes, its closed rows no longer qualify for the scheduled unanswered-review reminders. With **Everyone must approve**, A's approval alone leaves B pending and eligible for those reminders. To verify the outcome, use **Approvals > Export history (CSV)** and compare each row's version and decision; the export displays text to copy, not a downloaded file.
+
+[Try this decision flow on a test page](https://marketplace.atlassian.com/apps/3231212993/reapprove-for-confluence). Requests create real page comments and mentions; notification delivery depends on Confluence settings.
 
 ## Where to follow approvals
 
