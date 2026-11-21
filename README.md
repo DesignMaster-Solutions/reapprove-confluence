@@ -26,6 +26,10 @@ Open the page and click the state under the title. Click **Approve version N**, 
 - Adding or removing a label does not create a page version, so it does not reset the approval.
 - A request nobody answered yet just follows the latest version, without new comments, so a burst of edits does not spam anyone.
 
+The screen below is the Refund policy page on 4 Nov 2026, and it is highlight 1 of Marketplace version 2.0.0. A decision already existed. The page is on version 3, the rule is everyone must approve, and the state under the title reads Needs re-approval 0/1. The line above that screen is "After a decision, an edit asks for review again." An edit before anyone answers stays Approval pending and does not use this screen. The public file is [47489298-49fb-4881-8ea1-54120c71f88d](https://marketplace.atlassian.com/product-listing/files/47489298-49fb-4881-8ea1-54120c71f88d?width=1840&height=900). [Install Reapprove](https://marketplace.atlassian.com/apps/3231212993/reapprove-for-confluence), then open a test page your reviewers can see.
+
+![After a decision, an edit asks for review again. Refund policy, version 3, Needs re-approval 0/1.](highlight-1-after-decision.jpg)
+
 The person who asked can **Cancel request** while the request is pending. **New request** starts a round with other approvers or another rule, closing any pending decisions in the previous round while preserving History.
 
 ## Worked example: a procedure changes halfway through review
