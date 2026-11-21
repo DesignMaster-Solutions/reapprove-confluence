@@ -22,7 +22,7 @@ Open the page and click the state under the title. Click **Approve version N**, 
 ## What happens when the page is edited
 
 - The state under the title reads **Approved (vN)** while the page is still on the approved version.
-- After an edit, it reads **Needs re-approval**, and the same approvers are mentioned again to review the new version. An old note or reason does not carry into the new round.
+- After an edit of a page someone has already answered, it reads **Needs re-approval**, and the same approvers are mentioned again to review the new version. An old note or reason does not carry into the new round. An edit before anyone answers does not use that label: the open request follows the new version, as the next point says.
 - Adding or removing a label does not create a page version, so it does not reset the approval.
 - A request nobody answered yet just follows the latest version, without new comments, so a burst of edits does not spam anyone.
 
