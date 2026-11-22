@@ -17,7 +17,17 @@ If an approver has not answered after 3 days, Reapprove adds another comment tha
 
 ## Approve or reject
 
-Open the page and click the state under the title. Click **Approve version N**, or write **Your comment** and click **Reject**. A comment is required to reject, and it goes to the page history and to the reply comment.
+Open the page and click the state under the title. Click **Approve version N**, or write **Your comment** and click **Reject**. A rejection with a reason goes to the page history and to the reply comment. A **Reject** with no reason does not: see [When Reject has no reason](#when-reject-has-no-reason).
+
+### When Reject has no reason
+
+[Install Reapprove for Confluence](https://marketplace.atlassian.com/apps/3231212993/reapprove-for-confluence), then open a page where you are still a pending approver and click the state under the title.
+
+**Example input:** the request is pending, **Your comment** is empty or only spaces, and you click **Reject**.
+
+**Result:** the panel shows **Give a reason when you reject, so the author knows what to fix.** The request stays pending. History does not gain a rejection, and the page does not get a reply comment. Type a reason and click **Reject** again. That rejection ends the round under either rule, and the reason is stored.
+
+Checked against the decision check in the published app on 22 November 2026. This is not a new click on a customer site.
 
 ## What happens when the page is edited
 
@@ -127,10 +137,11 @@ Sold through the Atlassian Marketplace, per Confluence user, free for up to 10 u
 | You cannot approve your own request | Remove yourself from Approvers and choose another person. |
 | No Approve or Reject button | Check that you are signed in as a selected approver and that your decision is still pending. A completed round requires a new request. |
 | This page changed after the request | Reload the page, read the latest version and reopen its approval status. |
+| Reject with an empty comment | The request stays pending. The panel shows the sentence in [When Reject has no reason](#when-reject-has-no-reason). |
 | Nothing is waiting for your approval | My approvals has no pending request visible to your account. Check the page's History if you expected a completed request. |
 | Export history (CSV) did not download a file | The button displays CSV text. Copy the text into a spreadsheet or save it as a `.csv` file. |
 
-Notes and decision comments can have up to 500 characters each. A rejection requires a reason and ends the round under either approval rule. Reapprove works on Confluence pages, not blog posts.
+Notes and decision comments can have up to 500 characters each. A rejection with a reason ends the round under either approval rule. A rejection with no reason does not end it. Reapprove works on Confluence pages, not blog posts.
 
 ## Support
 
