@@ -154,7 +154,7 @@ Sold through the Atlassian Marketplace, per Confluence user, free for up to 10 u
 | The subscription is not active | The dialog shows the sentences in [When the subscription is not active](#when-the-subscription-is-not-active). |
 | You cannot approve your own request | Remove yourself from Approvers and choose another person. |
 | No Approve or Reject button | Check that you are signed in as a selected approver and that your decision is still pending. A completed round requires a new request. |
-| This page changed after the request | Reload the page, read the latest version and reopen its approval status. |
+| This page changed after the request | The panel shows the sentence in [When Approve meets a newer page version](#when-approve-meets-a-newer-page-version). |
 | Reject with an empty comment | The request stays pending. The panel shows the sentence in [When Reject has no reason](#when-reject-has-no-reason). |
 | Nothing is waiting for your approval | My approvals has no pending request visible to your account. Check the page's History if you expected a completed request. |
 | Export history (CSV) did not download a file | The button displays CSV text. Copy the text into a spreadsheet or save it as a `.csv` file. |
@@ -170,6 +170,26 @@ Sold through the Atlassian Marketplace, per Confluence user, free for up to 10 u
 If you asked for the approval, **Cancel request** still runs. A development install with no license object does not show this warning: a missing license is treated as allowed. Publishing a new version while the subscription is inactive does not open a new round. That screen is [When the page version moves past the decision](#when-the-page-version-moves-past-the-decision).
 
 Checked against the published app on 23 November 2026. This is not a new click on a customer site.
+
+### When Approve meets a newer page version
+
+[Install Reapprove for Confluence](https://marketplace.atlassian.com/apps/3231212993/reapprove-for-confluence), then open a page where you are still a pending approver.
+
+**Example input:** you are one of the approvers. The stored round is still pending on version 3. The page is now version 4. The dialog was opened before that publish, so **Approve version 3** and **Reject** are still on screen. The subscription is active, or this is a development install with no license object.
+
+**Result:** click **Approve version 3**. The panel shows **This page changed after the request. Reload it and review the latest version.** The round stays pending on version 3. Nothing is stored. The button name uses the version from the open dialog. The check uses the page version read at the click, so that click cannot approve version 3 once the page is version 4.
+
+Click **Reject** and enter `the total is wrong`. The same sentence appears, and the round stays pending.
+
+A comment of 500 characters reaches this sentence. A comment of 501 characters does not. The panel shows **The comment can have at most 500 characters.** and the round stays pending.
+
+An empty Reject does not show this sentence. That click is [When Reject has no reason](#when-reject-has-no-reason), and that check runs first.
+
+If your own row is no longer pending, the panel shows **You have already answered this request.** and does not show the version sentence, even when the page is already on version 4. After the dialog reloads, **Approve** and **Reject** are gone, because your row is not pending. The sentence is the second click that arrives before that reload. On version 3, with your row already approved and the other approver still pending, the round stays as it was.
+
+An inactive subscription does not reach this sentence. That screen is [When the subscription is not active](#when-the-subscription-is-not-active).
+
+Checked against `decide` in production source `5f24f321` on 23 November 2026. The click reads the live page version and does not send the version printed on the button. This is not a new click on a customer site.
 
 Notes and decision comments can have up to 500 characters each. A rejection with a reason ends the round under either approval rule. A rejection with no reason does not end it. Reapprove works on Confluence pages, not blog posts.
 
