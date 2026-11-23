@@ -151,13 +151,25 @@ Sold through the Atlassian Marketplace, per Confluence user, free for up to 10 u
 
 | What you see | What to do |
 |---|---|
-| The subscription is not active | Ask a Confluence admin to renew or activate Reapprove before requesting or deciding. |
+| The subscription is not active | The dialog shows the sentences in [When the subscription is not active](#when-the-subscription-is-not-active). |
 | You cannot approve your own request | Remove yourself from Approvers and choose another person. |
 | No Approve or Reject button | Check that you are signed in as a selected approver and that your decision is still pending. A completed round requires a new request. |
 | This page changed after the request | Reload the page, read the latest version and reopen its approval status. |
 | Reject with an empty comment | The request stays pending. The panel shows the sentence in [When Reject has no reason](#when-reject-has-no-reason). |
 | Nothing is waiting for your approval | My approvals has no pending request visible to your account. Check the page's History if you expected a completed request. |
 | Export history (CSV) did not download a file | The button displays CSV text. Copy the text into a spreadsheet or save it as a `.csv` file. |
+
+### When the subscription is not active
+
+[Install Reapprove for Confluence](https://marketplace.atlassian.com/apps/3231212993/reapprove-for-confluence), then open a page where you are still a pending approver.
+
+**Example input:** the Marketplace license is present and not active. The latest round is still pending on the current page version, and you are one of the approvers. Open the state under the title.
+
+**Result:** the dialog shows **The Reapprove subscription is not active. Ask a Confluence admin to renew it.** Click **New request**. **Request approval of version N** stays disabled, so a new request is not stored. **Approve version N** and **Reject** stay clickable. Clicking either shows **Your Reapprove subscription is not active. Ask a Confluence admin to renew it.** The round stays pending. History does not gain a decision, and the page does not get a reply comment.
+
+If you asked for the approval, **Cancel request** still runs. A development install with no license object does not show this warning: a missing license is treated as allowed. Publishing a new version while the subscription is inactive does not open a new round. That screen is [When the page version moves past the decision](#when-the-page-version-moves-past-the-decision).
+
+Checked against the published app on 23 November 2026. This is not a new click on a customer site.
 
 Notes and decision comments can have up to 500 characters each. A rejection with a reason ends the round under either approval rule. A rejection with no reason does not end it. Reapprove works on Confluence pages, not blog posts.
 
