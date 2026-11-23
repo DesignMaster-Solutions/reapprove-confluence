@@ -7,11 +7,50 @@ Install: https://marketplace.atlassian.com/apps/3231212993/reapprove-for-conflue
 ## Ask for approval
 
 1. Open a Confluence page. Under the title, click **Request approval** (it shows the current state, for example *Not requested*).
-2. In **Approvers**, choose 1 to 20 people other than yourself. You cannot approve your own request.
+2. In **Approvers**, choose 1 to 20 people other than yourself. If that click refuses, the panel shows the sentence in [When Request approval refuses the form](#when-request-approval-refuses-the-form).
 3. Under **Rule**, choose **Everyone must approve** or **Any one approver is enough**.
 4. Add an optional **Note for the approvers** and click **Request approval of version N**.
 
 The app adds a page comment with an @mention for the approvers. Bell and e-mail notification delivery depends on Confluence settings.
+
+### When Request approval refuses the form
+
+[Install Reapprove for Confluence](https://marketplace.atlassian.com/apps/3231212993/reapprove-for-confluence), then open a Confluence page and click the state under the title. If nothing has been requested, the form is already open. If the form is not on screen, click **New request**.
+
+**Request approval of version N** stays enabled once you have chosen at least one person. It stays disabled while Approvers is empty, while a save is in progress, or while the subscription warning is on screen.
+
+The click shows one red line. The round is not stored. The page does not get a comment. If more than one row below is true, you see the earliest row only.
+
+| What you entered | What you see |
+|---|---|
+| An approver id that is not an Atlassian account id | **One of the approvers is not a valid Atlassian account.** |
+| Approvers is empty | **Choose at least one approver.** The button stays disabled, so this line is the server answer. |
+| You are one of the approvers | **You cannot approve your own request. Choose someone else.** |
+| 21 different people, and you are not one of them | **At most 20 approvers per request.** |
+| A rule other than everyone or any one approver | **Choose a rule: everyone or any one approver.** The menu only offers those two, so this line is the server answer. |
+| A note of 501 characters after spaces at the ends are removed | **The note can have at most 500 characters.** |
+
+You, plus 21 other people, plus a note of 501 characters, shows the own-request sentence. 21 other people and that same note shows the 20-person sentence. One other person and a note of 501 characters shows the note sentence.
+
+A note of 500 characters is accepted. The same person picked twice counts as one, so two copies of one other person are not the 20-person sentence. A note of only spaces is stored as no note, and it is not the note sentence. A bad account id is shown even when you are also on the list and the note is too long.
+
+An inactive subscription does not reach this table. That screen is [When the subscription is not active](#when-the-subscription-is-not-active).
+
+If Confluence refuses the page on that click, the panel shows **This page is not available to you.** when the status is 404 or 403. Another status names the code, for example **Confluence 500 reading the page.** Those checks run before this table, so a refused page does not show the own-request sentence. A blog post shows **Reapprove works on pages.** A call that is not on a page shows **Open this from a Confluence page.** A blog post does not show that second sentence.
+
+**Example input:** Approvers is you and one other person. The rule is **Everyone must approve**. The note is empty. The subscription is active, or this is a development install with no license object.
+
+**Result:** `You cannot approve your own request. Choose someone else.` Nothing is stored.
+
+**Example input:** 21 other people, and the note is the letter x repeated 501 times.
+
+**Result:** `At most 20 approvers per request.` Nothing is stored.
+
+**Example input:** one other person, and the note is the letter x repeated 501 times.
+
+**Result:** `The note can have at most 500 characters.` Nothing is stored.
+
+Checked against `validateRequest` in production source `5f24f321` on 23 November 2026. `requestApproval` checks the license, then that the call is on a page, then reads the page, then runs this check, then stores the round and adds the comment. This is not a new click on a customer site.
 
 If an approver has not answered after 3 days, Reapprove adds another comment that @mentions only the approvers still missing, and repeats it every 7 days while the request stays open. Each step is sent once. Reminders stop when the round completes (including one approval under the any-one rule or a rejection under either rule), or when the request is cancelled.
 
@@ -152,7 +191,7 @@ Sold through the Atlassian Marketplace, per Confluence user, free for up to 10 u
 | What you see | What to do |
 |---|---|
 | The subscription is not active | The dialog shows the sentences in [When the subscription is not active](#when-the-subscription-is-not-active). |
-| You cannot approve your own request | Remove yourself from Approvers and choose another person. |
+| You cannot approve your own request | The panel shows the sentence in [When Request approval refuses the form](#when-request-approval-refuses-the-form). Remove yourself and choose another person. |
 | No Approve or Reject button | Check that you are signed in as a selected approver and that your decision is still pending. A completed round requires a new request. |
 | This page changed after the request | The panel shows the sentence in [When Approve meets a newer page version](#when-approve-meets-a-newer-page-version). |
 | Reject with an empty comment | The request stays pending. The panel shows the sentence in [When Reject has no reason](#when-reject-has-no-reason). |
