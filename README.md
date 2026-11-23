@@ -36,6 +36,24 @@ Checked against the decision check in the published app on 22 November 2026. Thi
 - Adding or removing a label does not create a page version, so it does not reset the approval.
 - A request nobody answered yet just follows the latest version, without new comments, so a burst of edits does not spam anyone.
 
+The dialog uses two sentences of its own. See [When the page version moves past the decision](#when-the-page-version-moves-past-the-decision).
+
+### When the page version moves past the decision
+
+[Install Reapprove for Confluence](https://marketplace.atlassian.com/apps/3231212993/reapprove-for-confluence), then open a page that already has a decision and publish a new version.
+
+**Example input:** version 3 was approved, or the latest round was rejected. The page is now version 4, and the new round is not stored yet. Open the state under the title.
+
+**Result:** the dialog shows **The page changed after version 3, so that decision no longer applies.** The state under the title reads **Needs re-approval**. The number is the version that decision covered. If the subscription is not active, the app does not open the new round, so this sentence stays.
+
+**Example input:** someone had already answered version 3, the subscription is active, and the app has stored the new round on version 4.
+
+**Result:** the dialog shows **The page changed after the last decision, so the approvers were asked to review version 4.** With two approvers and no answer on version 4 yet, the state under the title reads **Needs re-approval 0/2**. The page comment is a different sentence: **This page changed (now version 4), so the previous decision no longer applies. Please review it again:** followed by the same approvers. The old note is not copied.
+
+An edit before anyone has answered does not show either dialog sentence and does not add that comment. The open request follows the new version and stays **Approval pending**.
+
+Checked against the published app on 23 November 2026. This is not a new click on a customer site.
+
 The screen below is the Refund policy page on 4 Nov 2026, and it is highlight 1 of Marketplace version 2.0.0. A decision already existed. The page is on version 3, the rule is everyone must approve, and the state under the title reads Needs re-approval 0/1. The line above that screen is "After a decision, an edit asks for review again." An edit before anyone answers stays Approval pending and does not use this screen. The public file is [47489298-49fb-4881-8ea1-54120c71f88d](https://marketplace.atlassian.com/product-listing/files/47489298-49fb-4881-8ea1-54120c71f88d?width=1840&height=900). [Install Reapprove](https://marketplace.atlassian.com/apps/3231212993/reapprove-for-confluence), then open a test page your reviewers can see.
 
 ![After a decision, an edit asks for review again. Refund policy, version 3, Needs re-approval 0/1.](highlight-1-after-decision.jpg)
